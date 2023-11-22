@@ -47,6 +47,7 @@ require("lazy").setup({
 			"nvim-telescope/telescope-live-grep-args.nvim"
 		}
 	},
+	"ThePrimeagen/harpoon",
 
 	-- Project tree
 	{
@@ -84,7 +85,8 @@ require("lazy").setup({
 
 	-- Lisp
 	"Olical/conjure",           -- REPL
-	"jose-elias-alvarez/null-ls.nvim", -- fnlfmt, mdfmt
+	"jose-elias-alvarez/null-ls.nvim", -- mdfmt
+	"julienvincent/nvim-paredit", -- Parens edit
 
 	-- Misc
 	"NoahTheDuke/vim-just", -- Build tool
@@ -147,6 +149,8 @@ require('mini.statusline').setup({
 })
 vim.opt.laststatus = 3
 
+
+require("nvim-paredit").setup()  -- parens edit
 require("neo-tree").setup()      -- File tree
 require("todo-comments").setup() -- Highlight TODO: comments
 require("fidget").setup()        -- Progress bar
@@ -238,6 +242,7 @@ local telescope = require("telescope")
 local actions = require("telescope.actions")
 telescope.setup({
 	defaults = {
+		layout_strategy = "vertical",
 		mappings = {
 			i = {
 				["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
@@ -264,6 +269,7 @@ telescope.setup({
 })
 --telescope.load_extension('fzf')
 telescope.load_extension('live_grep_args')
+telescope.load_extension('harpoon')
 
 -- Plugin dev
 local ok, plenary_reload = pcall(require, "plenary.reload")
@@ -338,10 +344,13 @@ nmap_leader("Q", "<cmd>:cclose<cr>", "Toggle quickfix")
 nmap_leader("r", "<cmd>Telescope registers<cr>", "Registers")
 
 -- Marks + Fenpoon
+nmap_leader("m", "<cmd>Telescope harpoon marks<cr>", "Harpoons")
+nmap_leader("M", "<cmd>:lua require('harpoon.mark').add_file()<cr>", "Harpoon")
+
+-- Jump
 local mini_jump2d = require('mini.jump2d')
 vim.keymap.set({ "n", "v" }, "<cr>", function() return mini_jump2d.start(mini_jump2d.builtin_opts.single_character) end,
 	{})
-nmap_leader("m", "<cmd>Telescope marks<cr>", "Marks")
 
 local miniclue = require('mini.clue')
 miniclue.setup({
