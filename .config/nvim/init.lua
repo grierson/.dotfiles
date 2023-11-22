@@ -61,31 +61,36 @@ require("lazy").setup({
 	},
 
 	-- LSP + Autocomplete
-	"PaterJason/cmp-conjure",
+	"williamboman/mason.nvim",
+	"williamboman/mason-lspconfig.nvim",
 	{
-		'VonHeikemen/lsp-zero.nvim',
-		branch = 'v2.x',
-		dependencies = {
-			-- LSP Support
-			{ 'neovim/nvim-lspconfig' },
-			{ 'williamboman/mason.nvim' },
-			{ 'williamboman/mason-lspconfig.nvim' },
-
-			-- Autocompletion
-			{ 'hrsh7th/nvim-cmp' },
-			{ 'hrsh7th/cmp-nvim-lsp' },
-			{ 'L3MON4D3/LuaSnip' },
-		}
+		"VonHeikemen/lsp-zero.nvim",
+		branch = 'v3.x',
+		lazy = true,
+		config = false
 	},
 
+	-- LSP Support
+	{
+		"neovim/nvim-lspconfig",
+		dependencies = {
+			{ "hrsh7th/cmp-nvim-lsp" },
+		}
+	},
+	-- Autocompletion
+	{
+		"hrsh7th/nvim-cmp",
+		dependencies = {
+			{ "L3MON4D3/LuaSnip" }
+		},
+	},
 
 	-- Basics
 	"echasnovski/mini.nvim", -- comments, pair, surround, statusline, leap, whichKey
 	"tpope/vim-sleuth", -- Indent
 
 	-- Lisp
-	"Olical/conjure",           -- REPL
-	"jose-elias-alvarez/null-ls.nvim", -- mdfmt
+	"Olical/conjure",      -- REPL
 	"julienvincent/nvim-paredit", -- Parens edit
 
 	-- Misc
@@ -108,9 +113,10 @@ require("lazy").setup({
 	},
 })
 
+-- Theme
 vim.o.termguicolors = true
 vim.o.background = "light"
-vim.cmd [[colorscheme alabaster]]
+vim.cmd.colorscheme('alabaster')
 
 -- Options
 require('mini.basics').setup()
@@ -157,54 +163,44 @@ require("fidget").setup()        -- Progress bar
 require("neogit").setup({})      -- Git manager
 require("gitsigns").setup({})    -- Git gutter
 
--- LSP
-local null_ls = require("null-ls")
+-- LSP setup
+local lsp_zero = require('lsp-zero')
 
-null_ls.setup({
-	sources = {
-		null_ls.builtins.formatting.fnlfmt,
-		null_ls.builtins.formatting.prettier,
-		null_ls.builtins.diagnostics.markdownlint
-	},
-})
-
-local lsp = require('lsp-zero').preset({})
-
-lsp.on_attach(function(_, bufnr)
-	lsp.default_keymaps({
-		buffer = bufnr,
-		preserve_mappings = false
-	})
-	vim.keymap.set('n', 'gr', '<cmd>Telescope lsp_references<cr>', { buffer = true })
+lsp_zero.on_attach(function(client, bufnr)
+	-- see :help lsp-zero-keybindings
+	-- to learn the available actions
+	lsp_zero.default_keymaps({ buffer = bufnr })
 end)
 
-lsp.ensure_installed({
-	"lua_ls",
-	"clojure_lsp",
-	"terraformls",
-	"marksman",
-})
-
-require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
-
-lsp.setup()
-
--- Completion
-local cmp = require("cmp")
-require("luasnip.loaders.from_vscode").lazy_load()
-
-cmp.setup({
-	sources = {
-		{ name = "path" },
-		{ name = "nvim_lsp" },
-		{ name = 'conjure' },
-		{ name = "buffer",  keyword_length = 3 },
-		{ name = "luasnip", keyword_length = 2 },
-	},
-	mapping = {
-		['<CR>'] = cmp.mapping.confirm({ select = false }),
+require('mason').setup({})
+require('mason-lspconfig').setup({
+	handlers = {
+		lsp_zero.default_setup,
+		lua_ls = function()
+			local lua_opts = lsp_zero.nvim_lua_ls()
+			require('lspconfig').lua_ls.setup(lua_opts)
+		end,
 	}
 })
+
+-- Autocompletion config
+local cmp = require('cmp')
+local cmp_action = lsp_zero.cmp_action()
+
+cmp.setup({
+	mapping = cmp.mapping.preset.insert({
+		['<CR>'] = cmp.mapping.confirm({ select = false }),
+
+		-- Navigate between snippet placeholder
+		['<C-f>'] = cmp_action.luasnip_jump_forward(),
+		['<C-b>'] = cmp_action.luasnip_jump_backward(),
+
+		-- Scroll up and down in the completion documentation
+		['<C-u>'] = cmp.mapping.scroll_docs(-4),
+		['<C-d>'] = cmp.mapping.scroll_docs(4),
+	})
+})
+
 
 -- Treesitter
 require("nvim-treesitter.configs").setup({
