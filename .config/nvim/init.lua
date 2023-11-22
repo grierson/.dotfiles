@@ -174,6 +174,19 @@ end)
 
 require('mason').setup({})
 require('mason-lspconfig').setup({
+	ensure_installed = {
+		'tsserver',
+		'astro',
+		'dockerls',
+		'docker_compose_language_service',
+		'clojure_lsp',
+		'marksman',
+		'yamlls',
+		'lua_ls',
+		'jsonls',
+		'bashls',
+		'terraformls'
+	},
 	handlers = {
 		lsp_zero.default_setup,
 		lua_ls = function()
@@ -209,9 +222,11 @@ require("nvim-treesitter.configs").setup({
 		"lua",
 		"clojure",
 		"json",
+		"yaml",
 		"terraform",
 		"dockerfile",
 		"markdown",
+		"bash",
 	},
 	highlight = {
 		enable = true,
