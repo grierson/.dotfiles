@@ -52,20 +52,19 @@ nord15 #b48ead
    }
 
 window#waybar {
-    background:rgba (0, 0, 0, 0.55);
+    background: #2e3440;
 }
 
 #workspaces button {
     padding: 2px 0px;
     border-bottom: 2px;
-    color: #eceff4;
-    border-color: #d8dee9;
+    color: #81a1c1;
     border-style: solid;
     margin-top:2px;
 }
 
 #workspaces button.focused {
-    border-color: #81a1c1;
+    border-color: #eceff4;
 }
 
 #clock, #battery, #cpu, #memory,#idle_inhibitor, #temperature,#custom-keyboard-layout, #backlight, #network, #pulseaudio, #mode, #tray, #window,#custom-launcher,#custom-power,#custom-pacman {
