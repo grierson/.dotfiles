@@ -3,5 +3,12 @@ import:
 
 font:
   normal:
-    family: Fira Code
+    family: Fira Code Nerd Font
+  bold:
+    family: Fira Code Nerd Font
+    style: Bold
+  italic:
+    family: Fira Code Nerd Font
+    style: Italic
+
   size: 16.0
