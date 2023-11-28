@@ -65,12 +65,6 @@ require("lazy").setup({
 	-- LSP + Autocomplete
 	"williamboman/mason.nvim",
 	"williamboman/mason-lspconfig.nvim",
-	{
-		"VonHeikemen/lsp-zero.nvim",
-		branch = 'v3.x',
-		lazy = true,
-		config = false
-	},
 
 	-- LSP Support
 	{
@@ -160,7 +154,6 @@ require('mini.statusline').setup({
 })
 vim.opt.laststatus = 3
 
-
 require("nvim-paredit").setup()  -- parens edit
 require("neo-tree").setup()      -- File tree
 require("todo-comments").setup() -- Highlight TODO: comments
@@ -179,55 +172,60 @@ require("conform").setup({
 })
 
 -- LSP setup
-local lsp_zero = require('lsp-zero')
+local lspconfig = require('lspconfig')
+local lsp_capabilities = require('cmp_nvim_lsp').default_capabilities()
 
-lsp_zero.on_attach(function(client, bufnr)
-	lsp_zero.default_keymaps({ buffer = bufnr })
-	vim.keymap.set('n', 'gr', '<cmd>Telescope lsp_references<cr>', { buffer = bufnr })
-	vim.keymap.set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>', { buffer = bufnr })
-end)
+vim.api.nvim_create_autocmd('LspAttach', {
+	desc = 'LSP actions',
+	callback = function(event)
+		local opts = { buffer = event.buf }
+
+		vim.keymap.set('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>', opts)
+		vim.keymap.set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>', opts)
+		vim.keymap.set('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>', opts)
+		vim.keymap.set('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<cr>', opts)
+		vim.keymap.set('n', 'go', '<cmd>lua vim.lsp.buf.type_definition()<cr>', opts)
+		vim.keymap.set('n', 'gr', '<cmd>Telescope lsp_references<cr>', opts)
+		vim.keymap.set('n', 'gs', '<cmd>lua vim.lsp.buf.signature_help()<cr>', opts)
+		vim.keymap.set('n', 'gl', '<cmd>lua vim.diagnostic.open_float()<cr>', opts)
+	end
+})
+
+local default_setup = function(server)
+	lspconfig[server].setup({
+		capabilities = lsp_capabilities,
+	})
+end
 
 require('mason').setup({})
 require('mason-lspconfig').setup({
-	ensure_installed = {
-		'tsserver',
-		'astro',
-		'dockerls',
-		'docker_compose_language_service',
-		'clojure_lsp',
-		'yamlls',
-		'lua_ls',
-		'jsonls',
-		'bashls',
-		'terraformls'
-	},
-	handlers = {
-		lsp_zero.default_setup,
-		lua_ls = function()
-			local lua_opts = lsp_zero.nvim_lua_ls()
-			require('lspconfig').lua_ls.setup(lua_opts)
-		end,
-	}
+	ensure_installed = {},
+	handlers = { default_setup },
 })
 
--- Autocompletion config
 local cmp = require('cmp')
-local cmp_action = lsp_zero.cmp_action()
 
 cmp.setup({
+	sources = {
+		{ name = 'nvim_lsp' },
+	},
 	mapping = cmp.mapping.preset.insert({
+		-- Enter key confirms completion item
 		['<CR>'] = cmp.mapping.confirm({ select = false }),
 
-		-- Navigate between snippet placeholder
-		['<C-f>'] = cmp_action.luasnip_jump_forward(),
-		['<C-b>'] = cmp_action.luasnip_jump_backward(),
+		-- Ctrl + space triggers completion menu
+		['<C-Space>'] = cmp.mapping.complete(),
 
 		-- Scroll up and down in the completion documentation
 		['<C-u>'] = cmp.mapping.scroll_docs(-4),
 		['<C-d>'] = cmp.mapping.scroll_docs(4),
-	})
+	}),
+	snippet = {
+		expand = function(args)
+			require('luasnip').lsp_expand(args.body)
+		end,
+	},
 })
-
 
 -- Treesitter
 require("nvim-treesitter.configs").setup({
