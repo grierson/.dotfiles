@@ -3,6 +3,8 @@ vim.g.maplocalleader = ","
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
+vim.g.tabstop = 4
+
 -- Line numbers
 vim.wo.number = true
 vim.wo.relativenumber = true
@@ -85,6 +87,9 @@ require("lazy").setup({
 		},
 	},
 
+	-- Formatters
+	'stevearc/conform.nvim',
+
 	-- Basics
 	"echasnovski/mini.nvim", -- comments, pair, surround, statusline, leap, whichKey
 	"tpope/vim-sleuth", -- Indent
@@ -162,6 +167,16 @@ require("todo-comments").setup() -- Highlight TODO: comments
 require("fidget").setup()        -- Progress bar
 require("neogit").setup({})      -- Git manager
 require("gitsigns").setup({})    -- Git gutter
+
+require("conform").setup({
+	formatters_by_ft = {
+		markdown = { "deno_fmt" },
+	},
+	format_on_save = {
+		timeout_ms = 500,
+		lsp_fallback = true,
+	},
+})
 
 -- LSP setup
 local lsp_zero = require('lsp-zero')
