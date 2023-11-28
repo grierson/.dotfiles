@@ -70,7 +70,7 @@
             "headphones": "",
             "default": ["", ""]
         },
-        "on-click": "swaymsg exec \\$pulseaudio"
+        "on-click": "pavucontrol"
     },
 
     "tray": {
