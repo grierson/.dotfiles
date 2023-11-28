@@ -184,6 +184,7 @@ local lsp_zero = require('lsp-zero')
 lsp_zero.on_attach(function(client, bufnr)
 	lsp_zero.default_keymaps({ buffer = bufnr })
 	vim.keymap.set('n', 'gr', '<cmd>Telescope lsp_references<cr>', { buffer = bufnr })
+	vim.keymap.set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>', { buffer = bufnr })
 end)
 
 require('mason').setup({})
@@ -194,7 +195,6 @@ require('mason-lspconfig').setup({
 		'dockerls',
 		'docker_compose_language_service',
 		'clojure_lsp',
-		'marksman',
 		'yamlls',
 		'lua_ls',
 		'jsonls',
