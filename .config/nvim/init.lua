@@ -211,7 +211,6 @@ require('mason-lspconfig').setup({
 		"clojure_lsp",
 		"csharp_ls",
 		"html",
-		"json",
 		"tsserver",
 		"marksman",
 		"lua_ls"
