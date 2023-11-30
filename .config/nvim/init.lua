@@ -324,7 +324,11 @@ local nmap_leader = function(suffix, rhs, desc)
 	vim.keymap.set('n', '<Leader>' .. suffix, rhs, { desc = desc })
 end
 
-nmap_leader("eh", "<cmd>lua require('rest-nvim').run()<cr>", "HTTP")
+local nmap_localleader = function(suffix, rhs, desc)
+	vim.keymap.set('n', '<LocalLeader>' .. suffix, rhs, { desc = desc })
+end
+
+nmap_localleader("h", "<cmd>lua require('rest-nvim').run()<cr>", "HTTP")
 
 -- Project Tree
 nmap_leader("t", "<cmd>Neotree focus right<cr>", "Focus tree")
@@ -427,7 +431,6 @@ miniclue.setup({
 		{ mode = 'n', keys = '<Leader>s', desc = '+Search' },
 		{ mode = 'n', keys = '<Leader>l', desc = '+LSP' },
 		{ mode = 'n', keys = '<Leader>h', desc = '+Hunk' },
-		{ mode = 'n', keys = '<Leader>e', desc = '+Exec' },
 		-- Enhance this by adding descriptions for <Leader> mapping groups
 		miniclue.gen_clues.builtin_completion(),
 		miniclue.gen_clues.g(),
