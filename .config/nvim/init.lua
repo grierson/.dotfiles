@@ -110,6 +110,10 @@ require("lazy").setup({
 		ft = "markdown",
 		build = ":call mkdp#util#install()",
 	},
+	-- Rest
+	{
+		"rest-nvim/rest.nvim",
+	}
 })
 
 -- Theme
@@ -160,6 +164,7 @@ require("todo-comments").setup() -- Highlight TODO: comments
 require("fidget").setup()        -- Progress bar
 require("neogit").setup({})      -- Git manager
 require("gitsigns").setup({})    -- Git gutter
+require("rest-nvim").setup({})
 
 require("conform").setup({
 	formatters_by_ft = {
@@ -290,7 +295,6 @@ telescope.setup({
 		}
 	}
 })
---telescope.load_extension('fzf')
 telescope.load_extension('live_grep_args')
 telescope.load_extension('harpoon')
 
@@ -320,12 +324,14 @@ local nmap_leader = function(suffix, rhs, desc)
 	vim.keymap.set('n', '<Leader>' .. suffix, rhs, { desc = desc })
 end
 
+nmap_leader("eh", "<cmd>lua require('rest-nvim').run()<cr>", "HTTP")
+
 -- Project Tree
-nmap_leader('t', '<cmd>Neotree focus right<cr>', 'Focus tree')
-nmap_leader('T', '<cmd>Neotree toggle right<cr>', 'Toggle tree')
+nmap_leader("t", "<cmd>Neotree focus right<cr>", "Focus tree")
+nmap_leader("T", "<cmd>Neotree toggle right<cr>", "Toggle tree")
 
 -- Git
-nmap_leader('g', '<cmd>Neogit<cr>', 'Git')
+nmap_leader("g", "<cmd>Neogit<cr>", "Git")
 
 -- LSP
 nmap_leader("la", "<cmd>lua vim.lsp.buf.code_action()<cr>", "Action")
@@ -353,8 +359,8 @@ nmap_leader("sc", "<cmd>Telescope commands<cr>", "Commands")
 nmap_leader("hs", "<cmd>Gitsigns stage_hunk<cr>", "Stage")
 nmap_leader("hr", "<cmd>Gitsigns reset_hunk<cr>", "Reset")
 nmap_leader("hp", "<cmd>Gitsigns preview_hunk<cr>", "Preview")
-vim.keymap.set('n', '[h', "<cmd>Gitsigns prev_hunk<cr>", { desc = "Hunk" })
-vim.keymap.set('n', ']h', "<cmd>Gitsigns next_hunk<cr>", { desc = "Hunk" })
+vim.keymap.set("n", "[h", "<cmd>Gitsigns prev_hunk<cr>", { desc = "Hunk" })
+vim.keymap.set("n", "]h", "<cmd>Gitsigns next_hunk<cr>", { desc = "Hunk" })
 
 -- Buffers
 nmap_leader("b", "<cmd>Telescope buffers theme=dropdown ignore_current_buffer=true previewer=false<cr>", "Buffer")
@@ -366,7 +372,7 @@ nmap_leader("Q", "<cmd>:cclose<cr>", "Toggle quickfix")
 -- Registers
 nmap_leader("r", "<cmd>Telescope registers<cr>", "Registers")
 
--- Marks + Fenpoon
+-- Marks
 nmap_leader("m", "<cmd>Telescope harpoon marks<cr>", "Harpoons")
 nmap_leader("M", "<cmd>:lua require('harpoon.mark').add_file()<cr>", "Harpoon")
 
@@ -421,6 +427,7 @@ miniclue.setup({
 		{ mode = 'n', keys = '<Leader>s', desc = '+Search' },
 		{ mode = 'n', keys = '<Leader>l', desc = '+LSP' },
 		{ mode = 'n', keys = '<Leader>h', desc = '+Hunk' },
+		{ mode = 'n', keys = '<Leader>e', desc = '+Exec' },
 		-- Enhance this by adding descriptions for <Leader> mapping groups
 		miniclue.gen_clues.builtin_completion(),
 		miniclue.gen_clues.g(),
