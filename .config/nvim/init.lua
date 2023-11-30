@@ -204,7 +204,18 @@ end
 
 require('mason').setup({})
 require('mason-lspconfig').setup({
-	ensure_installed = {},
+	ensure_installed = {
+		"terraformls",
+		"yamlls",
+		"dockerls",
+		"clojure_lsp",
+		"csharp_ls",
+		"html",
+		"json",
+		"tsserver",
+		"marksman",
+		"lua_ls"
+	},
 	handlers = { default_setup },
 })
 
