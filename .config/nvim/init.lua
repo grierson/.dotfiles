@@ -169,6 +169,7 @@ require("rest-nvim").setup({})
 require("conform").setup({
 	formatters_by_ft = {
 		markdown = { "deno_fmt" },
+		yaml = { "yamlfix" }
 	},
 	format_on_save = {
 		timeout_ms = 500,
@@ -349,7 +350,7 @@ nmap_leader("g", "<cmd>Neogit<cr>", "Git")
 
 -- LSP
 nmap_leader("la", "<cmd>lua vim.lsp.buf.code_action()<cr>", "Action")
-nmap_leader("lf", "<cmd>lua vim.lsp.buf.format()<cr>", "Format")
+nmap_leader("lf", "<cmd>lua require('conform').format({lsp_fallback = true})<cr>", "Format")
 nmap_leader("lr", "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename")
 nmap_leader("ls", "<cmd>Telescope lsp_document_symbols symbols=function,variable<cr>", "Symbol")
 nmap_leader("ld", "<cmd>Telescope diagnostics<cr>", "Diagnostic")
@@ -362,7 +363,7 @@ nmap_leader("ws", "<cmd>Telescope lsp_workspace_symbols symbols=function,variabl
 nmap_leader("sf", "<cmd>Telescope find_files<cr>", "File")
 nmap_leader("sh", "<cmd>Telescope help_tags<cr>", "Help")
 nmap_leader("sw", "<cmd>Telescope grep_string<cr>", "Word")
-nmap_leader("sg", ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>", "Grep")
+nmap_leader("sg", "<cmd>lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>", "Grep")
 nmap_leader("sd", "<cmd>Telescope diagnostic<cr>", "Diagnostics")
 nmap_leader("sn", "<cmd>TodoTelescope<cr>", "Note")
 nmap_leader("sr", "<cmd>Telescope resume<cr>", "Resume")
