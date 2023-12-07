@@ -73,13 +73,19 @@ require("lazy").setup({
 			{ "hrsh7th/cmp-nvim-lsp" },
 		}
 	},
+
 	-- Autocompletion
 	{
-		"hrsh7th/nvim-cmp",
-		dependencies = {
-			{ "L3MON4D3/LuaSnip" }
-		},
+		"L3MON4D3/LuaSnip",
+		version = "v2.*",
+		build = "make install_jsregexp",
+		dependencies = { "rafamadriz/friendly-snippets" },
 	},
+	{
+		"hrsh7th/nvim-cmp",
+	},
+	{ 'saadparwaiz1/cmp_luasnip' },
+
 
 	-- Formatters
 	'stevearc/conform.nvim',
@@ -169,7 +175,8 @@ require("rest-nvim").setup({})
 require("conform").setup({
 	formatters_by_ft = {
 		markdown = { "deno_fmt" },
-		yaml = { "yamlfix" }
+		yaml = { "yamlfix" },
+		cs = { "csharpier" }
 	},
 	format_on_save = {
 		timeout_ms = 500,
@@ -210,29 +217,29 @@ require('mason-lspconfig').setup({
 		"yamlls",
 		"dockerls",
 		"clojure_lsp",
-		"csharp_ls",
 		"html",
 		"tsserver",
 		"marksman",
-		"lua_ls"
+		"lua_ls",
+		"omnisharp"
 	},
 	handlers = { default_setup },
 })
 
 local cmp = require('cmp')
 
+require("luasnip.loaders.from_vscode").lazy_load()
+
 cmp.setup({
 	sources = {
 		{ name = 'nvim_lsp' },
+		{ name = 'luasnip' },
 	},
 	mapping = cmp.mapping.preset.insert({
-		-- Enter key confirms completion item
 		['<CR>'] = cmp.mapping.confirm({ select = false }),
 
-		-- Ctrl + space triggers completion menu
-		['<C-Space>'] = cmp.mapping.complete(),
+		['<TAB>'] = cmp.mapping.complete(),
 
-		-- Scroll up and down in the completion documentation
 		['<C-u>'] = cmp.mapping.scroll_docs(-4),
 		['<C-d>'] = cmp.mapping.scroll_docs(4),
 	}),
