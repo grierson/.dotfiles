@@ -117,8 +117,15 @@ require("lazy").setup({
 		build = ":call mkdp#util#install()",
 	},
 	-- Rest
+	"rest-nvim/rest.nvim",
+
+	-- F#
 	{
-		"rest-nvim/rest.nvim",
+		"ionide/Ionide-vim",
+		ft = "fsharp",
+		dependencies = {
+			"neovim/nvim-lspconfig"
+		}
 	}
 })
 
@@ -171,6 +178,12 @@ require("fidget").setup()        -- Progress bar
 require("neogit").setup({})      -- Git manager
 require("gitsigns").setup({})    -- Git gutter
 require("rest-nvim").setup({})
+require("ionide").setup({
+	on_attach = function(client, bufnr)
+		vim.lsp.codelens.refresh()
+	end,
+	capabilities = capabilities
+})
 
 require("conform").setup({
 	formatters_by_ft = {
@@ -221,7 +234,7 @@ require('mason-lspconfig').setup({
 		"tsserver",
 		"marksman",
 		"lua_ls",
-		"omnisharp"
+		"omnisharp",
 	},
 	handlers = { default_setup },
 })
@@ -381,8 +394,8 @@ nmap_leader("sc", "<cmd>Telescope commands<cr>", "Commands")
 nmap_leader("hs", "<cmd>Gitsigns stage_hunk<cr>", "Stage")
 nmap_leader("hr", "<cmd>Gitsigns reset_hunk<cr>", "Reset")
 nmap_leader("hp", "<cmd>Gitsigns preview_hunk<cr>", "Preview")
-vim.keymap.set("n", "[h", "<cmd>Gitsigns prev_hunk<cr>", { desc = "Hunk" })
-vim.keymap.set("n", "]h", "<cmd>Gitsigns next_hunk<cr>", { desc = "Hunk" })
+vim.keymap.set("n", "[h", "<cmd>Gitsigns prev_hunk<cr>", { desc = "Prev hunk" })
+vim.keymap.set("n", "]h", "<cmd>Gitsigns next_hunk<cr>", { desc = "Next hunk" })
 
 -- Buffers
 nmap_leader("b", "<cmd>Telescope buffers theme=dropdown ignore_current_buffer=true previewer=false<cr>", "Buffer")
