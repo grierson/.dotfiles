@@ -8,6 +8,7 @@
         "sway/window"
     ],
     "modules-right": [
+        "custom/pomodoro",
         "network",
         "cpu",
         "memory",
@@ -18,6 +19,13 @@
     // -------------------------------------------------------------------------
     // Modules
     // -------------------------------------------------------------------------
+
+    "custom/pomodoro": {
+        "format": "{}",
+        "interval": 1,
+        "exec": "pomodoro status | grep -v '^$' || echo pomodoro",
+        "on-click": "pomodoro start"
+    },
 
     "clock": {
         "interval": 60,
