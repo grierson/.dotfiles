@@ -2,7 +2,6 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = ","
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
-
 vim.g.tabstop = 4
 
 -- Line numbers
@@ -85,6 +84,12 @@ require("lazy").setup({
 		"hrsh7th/nvim-cmp",
 	},
 	{ 'saadparwaiz1/cmp_luasnip' },
+
+	-- Copilot
+	{
+		"github/copilot.vim",
+		lazy = false,
+	},
 
 
 	-- Formatters
@@ -250,8 +255,6 @@ cmp.setup({
 	},
 	mapping = cmp.mapping.preset.insert({
 		['<CR>'] = cmp.mapping.confirm({ select = false }),
-
-		['<TAB>'] = cmp.mapping.complete(),
 
 		['<C-u>'] = cmp.mapping.scroll_docs(-4),
 		['<C-d>'] = cmp.mapping.scroll_docs(4),
