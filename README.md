@@ -1,20 +1,14 @@
 # Stow
 
-Dotfiles config
+Use Manjaro Sway as base.
+Config for foot, zsh, nvim
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/zimfw/install/master/install.zsh | zsh
+git clone <this>
 cd .dotfiles
-sudo apt install $(cat package.list)
 stow .
 ```
 
 ```bash
 ctrl + b + I  # Instal Tmux plugins
-```
-
-```bash
-nvm use --lts
-Install Fira Code Nerd Font from https://github.com/ryanoasis/nerd-fonts
-Install neovim AppImage from https://github.com/neovim/neovim/wiki/Installing-Neovim#appimage-universal-linux-package
 ```

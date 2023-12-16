@@ -138,6 +138,7 @@ require("lazy").setup({
 vim.o.termguicolors = true
 vim.o.background = "light"
 vim.cmd.colorscheme('alabaster')
+vim.o.background = "dark"
 
 -- Options
 require('mini.basics').setup()
