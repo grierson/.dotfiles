@@ -21,9 +21,9 @@
     "modules-center": ["custom/wf-recorder", "sway/mode"],
     "modules-right": [
         // informational
-        "custom/github",
+        "custom/pomodoro",
+        "custom/pomodoro-start",
         "cpu",
-        "temperature",
         "memory",
 
         // connecting
@@ -31,15 +31,7 @@
 
         // media
         "custom/playerctl",
-        "idle_inhibitor",
-        "custom/dnd",
         "pulseaudio",
-        "backlight",
-
-        // system
-        "custom/adaptive-light",
-        "custom/sunset",
-        "custom/pacman",
 
         "tray",
         "clock"
@@ -49,6 +41,19 @@
     // Modules
     // -------------------------------------------------------------------------
 
+    "custom/pomodoro-start": {
+        "format": "",
+        "on-click": "i3-gnome-pomodoro start-stop"
+    },
+
+    "custom/pomodoro": {
+        "exec": "i3-gnome-pomodoro status",
+        "interval": 1,
+        "format": "{}",
+        "on-click": "i3-gnome-pomodoro toggle",
+        "on-click-right": "i3-gnome-pomodoro stop"
+    },
+
     "clock": {
         "interval": 60,
         "format": "{:%e %b %Y %H:%M}",
@@ -56,6 +61,7 @@
         "tooltip-format": "<big>{:%B %Y}</big>\n<tt>{calendar}</tt>",
         "on-click": "swaymsg exec \\$calendar"
     },
+
 
     "cpu": {
         "interval": 10,
@@ -182,17 +188,6 @@
         "exec-if": "pgrep wf-recorder",
         "on-click": "killall -s SIGINT wf-recorder",
         "signal": 8
-    },
-
-    "custom/github": {
-        "interval": 300,
-        "tooltip": false,
-        "return-type": "json",
-        "format": " {}",
-        "exec": "gh api '/notifications' -q '{ text: length }' | cat -",
-        "exec-if": "[ -x \"$(command -v gh)\" ] && gh auth status 2>&1 | grep -q -m 1 'Logged in' && test $(gh api '/notifications' -q 'length') -ne 0",
-        "on-click": "xdg-open https://github.com/notifications && sleep 30 && pkill -RTMIN+4 waybar",
-        "signal": 4
     },
 
     "custom/playerctl": {
