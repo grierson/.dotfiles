@@ -48,7 +48,11 @@ require("lazy").setup({
 			"nvim-telescope/telescope-live-grep-args.nvim"
 		}
 	},
-	"ThePrimeagen/harpoon",
+	{
+		"ThePrimeagen/harpoon",
+		branch = "harpoon2",
+		requires = { { "nvim-lua/plenary.nvim" } }
+	},
 
 	-- Project tree
 	{
@@ -108,18 +112,11 @@ require("lazy").setup({
 	"folke/todo-comments.nvim", -- TODO: comments
 	"nvim-lua/plenary.nvim", -- Lots of packages use as dep
 
-	-- Progress bar
+	-- asciidoc
 	{
-		"j-hui/fidget.nvim",
-		tag = "legacy",
-		event = "LspAttach",
-	},
-
-	-- Markdown
-	{
-		"iamcco/markdown-preview.nvim",
-		ft = "markdown",
-		build = ":call mkdp#util#install()",
+		'tigion/nvim-asciidoc-preview',
+		ft = { 'asciidoc' },
+		-- opts = {},
 	},
 	-- Rest
 	"rest-nvim/rest.nvim",
@@ -162,6 +159,8 @@ require('mini.bracketed').setup() -- Bracket movement
 require('mini.splitjoin').setup() -- gS split or join args
 require('mini.starter').setup()   -- Starter screen
 require('mini.sessions').setup()  -- Sessions
+require('mini.notify').setup()    -- Progress bar
+
 -- Move code
 require('mini.move').setup({
 	mappings = {
@@ -179,7 +178,6 @@ vim.opt.laststatus = 3
 require("nvim-paredit").setup()  -- parens edit
 require("neo-tree").setup()      -- File tree
 require("todo-comments").setup() -- Highlight TODO: comments
-require("fidget").setup()        -- Progress bar
 require("neogit").setup({})      -- Git manager
 require("gitsigns").setup({})    -- Git gutter
 require("rest-nvim").setup({})
@@ -330,7 +328,6 @@ telescope.setup({
 	}
 })
 telescope.load_extension('live_grep_args')
-telescope.load_extension('harpoon')
 
 -- Plugin dev
 local ok, plenary_reload = pcall(require, "plenary.reload")
@@ -411,8 +408,10 @@ nmap_leader("Q", "<cmd>:cclose<cr>", "Toggle quickfix")
 nmap_leader("r", "<cmd>Telescope registers<cr>", "Registers")
 
 -- Marks
-nmap_leader("m", "<cmd>Telescope harpoon marks<cr>", "Harpoons")
-nmap_leader("M", "<cmd>:lua require('harpoon.mark').add_file()<cr>", "Harpoon")
+local harpoon = require('harpoon')
+harpoon:setup({})
+nmap_leader("M", function() harpoon:list():append() end, "Harpoons")
+nmap_leader("m", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end, "Harpoon")
 
 -- Jump
 local mini_jump2d = require('mini.jump2d')
