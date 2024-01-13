@@ -6,12 +6,12 @@ vim.cmd("set shiftwidth=2")
 -- Leaders
 vim.g.mapleader = " "
 vim.g.maplocalleader = ","
+
 -- Tree
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
 -- Editor
-vim.g.tabstop = 4
 vim.opt.clipboard = "unnamedplus"
 vim.opt.colorcolumn = "80"
 
