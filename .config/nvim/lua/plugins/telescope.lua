@@ -5,21 +5,20 @@ return {
 		"nvim-telescope/telescope-live-grep-args.nvim"
 	},
 	keys = {
-		{ "ls", "<cmd>Telescope lsp_document_symbols symbols=function,variable<cr>",            "Symbol" },
-		{ "ld", "<cmd>Telescope diagnostics<cr>",                                               "Diagnostic" },
-		{ "ws", "<cmd>Telescope lsp_workspace_symbols symbols=function,variable<cr>",           "Symbol" },
-		{ "sf", "<cmd>Telescope find_files<cr>",                                                "File" },
-		{ "sh", "<cmd>Telescope help_tags<cr>",                                                 "Help" },
-		{ "sw", "<cmd>Telescope grep_string<cr>",                                               "Word" },
-		{ "sg", "<cmd>lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>", "Grep" },
-		{ "sd", "<cmd>Telescope diagnostic<cr>",                                                "Diagnostics" },
-		{ "sn", "<cmd>TodoTelescope<cr>",                                                       "Note" },
-		{ "sr", "<cmd>Telescope resume<cr>",                                                    "Resume" },
-		{ "sq", "<cmd>Telescope quickfix<cr>",                                                  "Quickfix" },
-		{ "sc", "<cmd>Telescope commands<cr>",                                                  "Commands" },
-		{ "r",  "<cmd>Telescope registers<cr>",                                                 "Registers" },
-		{ "b", "<cmd>Telescope buffers theme=dropdown ignore_current_buffer=true previewer=false<cr>",
-			"Buffer" }
+		{ "<leader>ls", "<cmd>Telescope lsp_document_symbols symbols=function,variable<cr>",                    desc = "Symbol" },
+		{ "<leader>ld", "<cmd>Telescope diagnostics<cr>",                                                       desc = "Diagnostic" },
+		{ "<leader>ws", "<cmd>Telescope lsp_workspace_symbols symbols=function,variable<cr>",                   desc = "Symbol" },
+		{ "<leader>sf", "<cmd>Telescope find_files<cr>",                                                        desc = "File" },
+		{ "<leader>sh", "<cmd>Telescope help_tags<cr>",                                                         desc = "Help" },
+		{ "<leader>sw", "<cmd>Telescope grep_string<cr>",                                                       desc = "Word" },
+		{ "<leader>sg", "<cmd>lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>",         desc = "Grep" },
+		{ "<leader>sd", "<cmd>Telescope diagnostic<cr>",                                                        desc = "Diagnostics" },
+		{ "<leader>sn", "<cmd>TodoTelescope<cr>",                                                               desc = "Note" },
+		{ "<leader>sr", "<cmd>Telescope resume<cr>",                                                            desc = "Resume" },
+		{ "<leader>sq", "<cmd>Telescope quickfix<cr>",                                                          desc = "Quickfix" },
+		{ "<leader>sc", "<cmd>Telescope commands<cr>",                                                          desc = "Commands" },
+		{ "<leader>r",  "<cmd>Telescope registers<cr>",                                                         desc = "Registers" },
+		{ "<leader>b",  "<cmd>Telescope buffers theme=dropdown ignore_current_buffer=true previewer=false<cr>", desc = "Buffer" }
 	},
 	config = function()
 		local telescope = require("telescope")

@@ -1,29 +1,27 @@
 return {
 	"lewis6991/gitsigns.nvim",
 	lazy = false,
-	config = function()
-		require("gitsigns").setup()
-	end,
+	opts = {},
 	keys = {
 		{
 			"<leader>hr",
 			"<cmd>Gitsigns reset_hunk<cr>",
-			{ desc = "Reset hunk" },
+			desc = "Reset hunk",
 		},
 		{
 			"<leader>hp",
 			"<cmd>Gitsigns preview_hunk<cr>",
-			{ desc = "Preview hunk" },
+			desc = "Preview hunk",
 		},
 		{
 			"[h",
 			"<cmd>Gitsigns prev_hunk<cr>",
-			{ desc = "Prev hunk" },
+			desc = "Prev hunk",
 		},
 		{
 			"]h",
 			"<cmd>Gitsigns next_hunk<cr>",
-			{ desc = "Next hunk" },
+			desc = "Next hunk",
 		},
 	}
 }
