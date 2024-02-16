@@ -94,7 +94,7 @@ return {
       },
 
       clues = {
-        { mode = 'n', keys = '<Leader>w', desc = '+Buffers' },
+        { mode = 'n', keys = '<Leader>w', desc = '+Workspace' },
         { mode = 'n', keys = '<Leader>s', desc = '+Search' },
         { mode = 'n', keys = '<Leader>l', desc = '+LSP' },
         { mode = 'n', keys = '<Leader>h', desc = '+Hunk' },
