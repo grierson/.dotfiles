@@ -12,3 +12,12 @@ stow .
 ```bash
 ctrl + b + I  # Instal Tmux plugins
 ```
+
+Install
+```bash
+stow
+tmux
+git
+ripgrep
+nvm
+```
