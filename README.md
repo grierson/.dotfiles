@@ -20,4 +20,7 @@ tmux
 git
 ripgrep
 nvm
+fzf
+ttf-jetbrains-mono-nerd
+github-cli
 ```

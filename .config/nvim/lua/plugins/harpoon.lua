@@ -7,7 +7,7 @@ return {
         require("harpoon"):setup()
     end,
     keys = {
-        { "<leader>M", function() require("harpoon"):list():append() end, desc = "Harpoon", },
+        { "<leader>M", function() require("harpoon"):list():add() end, desc = "Harpoon", },
         {
             "<leader>m",
             function()

@@ -1,9 +1,6 @@
 return {
     {
         'nvim-treesitter/nvim-treesitter',
-        dependencies = {
-            { "HiPhish/nvim-ts-rainbow2" }, -- Rainbow parens
-        },
         config = function()
             require("nvim-treesitter.configs").setup({
                 ensure_installed = {
@@ -23,11 +20,6 @@ return {
                 },
                 indent = {
                     enable = true,
-                },
-                rainbow = {
-                    enable = true,
-                    query = 'rainbow-parens',
-                    strategy = require 'ts-rainbow.strategy.global'
                 },
                 incremental_selection = {
                     enable = true,
