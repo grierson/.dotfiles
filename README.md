@@ -9,14 +9,10 @@ cd .dotfiles
 stow .
 ```
 
-```bash
-ctrl + b + I  # Instal Tmux plugins
-```
-
 Install
 ```bash
 stow
-tmux
+zellij
 git
 ripgrep
 nvm

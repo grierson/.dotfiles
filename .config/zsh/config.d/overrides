@@ -1,10 +1,15 @@
 alias vi="nvim"
-alias "??"="gh copilot suggest"
-alias "cli?"="gh copilot explain"
 
-if [ -z "$TMUX" ]
-then
-    tmux attach -t TMUX || tmux new -s TMUX
+if [[ -z "$ZELLIJ" ]]; then
+    if [[ "$ZELLIJ_AUTO_ATTACH" == "true" ]]; then
+        zellij attach -c
+    else
+        zellij
+    fi
+
+    if [[ "$ZELLIJ_AUTO_EXIT" == "true" ]]; then
+        exit
+    fi
 fi
 
 source /usr/share/fzf/key-bindings.zsh
