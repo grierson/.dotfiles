@@ -1,22 +1,20 @@
 # Stow
 
-Use Manjaro Sway as base.
-Config for foot, zsh, nvim
+Use Ubuntu Sway as base.
+Config for foot, fish, nvim
 
 ```bash
+sudo apt-get install stow git gh
 git clone <this>
 cd .dotfiles
 stow .
 ```
 
-Install
+Then install
 ```bash
-stow
+fish
 zellij
-git
 ripgrep
 nvm
 fzf
-ttf-jetbrains-mono-nerd
-github-cli
 ```
