@@ -11,6 +11,7 @@ sudo apt-get install \
     clojure \
     git \
     gh \
+    git-delta \
     make \
     docker.io \
 
