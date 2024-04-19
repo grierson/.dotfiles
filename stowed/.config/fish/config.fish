@@ -10,6 +10,8 @@ set -Ux FZF_DEFAULT_OPTS "\
 
 set -gx ZELLIJ_AUTO_ATTACH true
 
+set --universal nvm_default_version lts
+
 alias g="git"
 alias n="nvim"
 alias fd="fdfind"
