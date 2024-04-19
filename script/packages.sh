@@ -18,6 +18,7 @@ sudo apt-get install \
 # Fish plugin manager
 # curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher
 # fisher install jorgebucaran/nvm.fish
+# fisher install PatrickF1/fzf.fish
 #
 # Install Rust manager
 # curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
