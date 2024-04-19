@@ -13,6 +13,7 @@ alias gg="g a .; and g c -a"
 alias lg="lazygit"
 alias n="nvim"
 alias fd="fdfind"
+alias bat="batcat"
 
 if status is-interactive
     eval (zellij setup --generate-auto-start fish | string collect)
