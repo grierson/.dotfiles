@@ -3,14 +3,14 @@ fish_add_path ~/.cargo/bin
 
 set -gx fish_greeting ""
 
-set -gx FZF_DEFAULT_COMMAND "rg --files --hidden --follow -g \"!.git/\" 2> /dev/null"
-set -gx FZF_CTRL_T_COMMAND $FZF_DEFAULT_COMMAND
+set -Ux FZF_DEFAULT_OPTS "\
+--color=bg+:#ccd0da,bg:#eff1f5,spinner:#dc8a78,hl:#d20f39 \
+--color=fg:#4c4f69,header:#d20f39,info:#8839ef,pointer:#dc8a78 \
+--color=marker:#dc8a78,fg+:#4c4f69,prompt:#8839ef,hl+:#d20f39"
 
 set -gx ZELLIJ_AUTO_ATTACH true
 
 alias g="git"
-alias gg="g a .; and g c -a"
-alias lg="lazygit"
 alias n="nvim"
 alias fd="fdfind"
 alias bat="batcat"

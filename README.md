@@ -8,12 +8,3 @@ git clone <this>
 cd .dotfiles
 sh ./script/bootstrap.sh
 ```
-
-Then install
-```bash
-fish
-zellij
-ripgrep
-nvm
-fzf
-```
