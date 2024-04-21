@@ -20,3 +20,7 @@ alias bat="batcat"
 if status is-interactive
     eval (zellij setup --generate-auto-start fish | string collect)
 end
+
+### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
+set --export --prepend PATH "/home/kyleg/.rd/bin"
+### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)

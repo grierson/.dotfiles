@@ -1,4 +1,4 @@
 return {
-    'tigion/nvim-asciidoc-preview',
-    ft = { 'asciidoc' },
+  'tigion/nvim-asciidoc-preview',
+  ft = { 'asciidoc' },
 }
