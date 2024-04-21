@@ -11,38 +11,8 @@ return {
             { "n", "v" },
             desc = "Jump 2d",
         },
-        {
-            '<Leader>M',
-            function()
-                local branch = vim.fn.system('git rev-parse --abbrev-ref HEAD')
-                if vim.v.shell_error ~= 0 then return nil end
-                local path = vim.trim(branch)
-                require("mini.visits").add_label(path)
-            end,
-            { "n", "v" },
-            desc = "Mark file"
-        },
-        {
-            '<Leader>m',
-            function()
-                local branch = vim.fn.system('git rev-parse --abbrev-ref HEAD')
-                if vim.v.shell_error ~= 0 then return nil end
-                local path = vim.trim(branch)
-                require("mini.extra")
-                    .pickers
-                    .visit_paths({
-                        filter = path,
-                        preserve_order = true
-                    })
-            end,
-            { "n", "v" },
-            desc = "Mark file"
-        }
     },
     config = function()
-        require("mini.visits").setup()     -- Harpoon
-        require('mini.extra').setup()      -- Picker for harpon
-        require('mini.pick').setup()       -- Picker
         require('mini.completion').setup() -- Autocomplete
         require('mini.basics').setup()     -- Better defaults
         require('mini.trailspace').setup() -- Trailing space
