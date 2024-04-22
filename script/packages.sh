@@ -4,6 +4,7 @@ set -xe
 
 sudo apt-get install \
     fish \
+    tmux \
     fd-find \
     bat \
     fzf \
@@ -13,7 +14,6 @@ sudo apt-get install \
     git-delta \
     make \
     docker.io \
-
 
 # Fish plugin manager
 # curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher
@@ -35,9 +35,6 @@ sudo apt-get install \
 # Neovim manager
 # cargo install bob-nvim
 # bob use stable
-
-# Zellij
-# cargo install --locked zellij
 
 # Clojure
 # curl -L -O https://github.com/clojure/brew-install/releases/latest/download/linux-install.sh
