@@ -1,5 +1,6 @@
 fish_add_path $HOME/.local/share/bob/nvim-bin
 fish_add_path $HOME/.cargo/bin
+fish_add_path $HOME/.local/bin
 
 set -gx fish_greeting ""
 
@@ -19,6 +20,8 @@ alias g="git"
 alias n="nvim"
 alias fd="fdfind"
 alias bat="batcat"
+
+zoxide init fish | source
 
 ### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
 set --export --prepend PATH "/home/kyleg/.rd/bin"
