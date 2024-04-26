@@ -1,5 +1,5 @@
 fish_add_path $HOME/.local/share/bob/nvim-bin
-fish_add_path ~/.cargo/bin
+fish_add_path $HOME/.cargo/bin
 
 set -gx fish_greeting ""
 
