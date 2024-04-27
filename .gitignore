@@ -1,2 +1,4 @@
 lazy-lock.json
 stowed/.config/tmux/plugins/
+stowed/.config/fish/
+!stowed/.config/fish/config.fish
