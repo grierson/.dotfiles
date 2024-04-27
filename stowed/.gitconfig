@@ -6,9 +6,6 @@
 	name = Kyle Grierson
 	email = griersonky@gmail.com
 [core]
-    pager = delta
 	editor = nvim
-[include]
-    path = ~/.config/delta/themes/catppuccin.gitconfig
-[delta]
-    features = catppuccin-latte
+[diff]
+    external = difft

@@ -22,6 +22,7 @@ yay -S --needed \
 	swaylock \
 	swayidle \
 	swaybg \
+  fuzzel \
 	pavucontrol \
 	network-manager-applet \
 	brightnessctl \
