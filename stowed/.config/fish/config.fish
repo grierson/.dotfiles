@@ -23,6 +23,4 @@ alias bat="batcat"
 
 zoxide init fish | source
 
-### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
-set --export --prepend PATH "/home/kyleg/.rd/bin"
-### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
+cd ~
