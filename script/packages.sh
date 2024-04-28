@@ -24,7 +24,7 @@ yay -S --needed \
 	swayidle \
 	swaybg \
   swayimg \
-  bemenu \
+  tofi \
   i3status-rs \
 	pavucontrol \
 	grim \
