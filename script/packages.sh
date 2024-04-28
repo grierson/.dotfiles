@@ -23,6 +23,7 @@ yay -S --needed \
 	swaylock \
 	swayidle \
 	swaybg \
+  bemenu \
   i3status-rs \
 	pavucontrol \
 	grim \
