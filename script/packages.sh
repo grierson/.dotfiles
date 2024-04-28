@@ -5,6 +5,7 @@ set -xe
 yay -S --needed \
   fish \
   ttf-firacode-nerd \
+  ttf-font-awesome \
   zoxide \
   man \
   tmux \
@@ -22,10 +23,7 @@ yay -S --needed \
 	swaylock \
 	swayidle \
 	swaybg \
-  fuzzel \
+  i3status-rs \
 	pavucontrol \
-	network-manager-applet \
-	brightnessctl \
-	volumectl \
 	grim \
 
