@@ -4,21 +4,8 @@ set -xe
 
 yay -S --needed \
   fish \
-  ttf-firacode-nerd \
-  ttf-font-awesome \
-  google-chrome \
-  zoxide \
-  tmux \
-  fd \
-  bat \
-  fzf \
-  ripgrep \
-  github-cli \
   make \
-  clang \
-  clojure \
-  babashka \
-  difftastic \
+  man \
 	sway \
 	swaylock \
 	swayidle \
@@ -29,6 +16,23 @@ yay -S --needed \
 	pavucontrol \
 	grim \
   slurp \
+  swappy \
+  ttf-firacode-nerd \
+  ttf-font-awesome \
+  zoxide \
+  tmux \
+  fd \
+  bat \
+  fzf \
+  ripgrep \
+  neovim \
+  unzip \
+  google-chrome \
+  github-cli \
+  clang \
+  clojure \
+  babashka \
+  difftastic \
   docker \
 	docker-compose \
   podman \

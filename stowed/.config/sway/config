@@ -154,22 +154,16 @@ bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
 bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
 bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
 
-bindsym $mod+p exec grim -g "$(slurp)" - | wl-copy
+bindsym $mod+p exec grim -g "$(slurp)" - | swappy -f -
 
-#
-# Status Bar:
-#
-# Read `man 5 sway-bar` for more information about this section.
+# Theme
 
-# # title bar
+# title bar
 default_border pixel 2
+client.focused $green $crust $green $green $green
 
-# # tokyonight theme
-client.focused              $blue #1a1b26 $blue $blue $blue
-client.focused_inactive     #292e42 #1a1b26 #6a6f87 #292e42   #292e42
-client.unfocused            #292e42 #1a1b26 #6a6f87 #292e42   #292e42
-client.urgent               #292e42 #1a1b26 #6a6f87 #292e42   #292e42
-client.placeholder          #292e42 #1a1b26 #6a6f87 #292e42   #292e42
+# Status Bar:
+# Read `man 5 sway-bar` for more information about this section.
 
 bar {
     font pango:Fira Code, FontAwesome 18
