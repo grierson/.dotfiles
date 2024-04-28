@@ -29,3 +29,10 @@ yay -S --needed \
 	pavucontrol \
 	grim \
   slurp \
+  docker \
+	docker-compose \
+  podman \
+  podman-desktop \
+
+sudo systemctl enable docker
+sudo systemctl start docker
