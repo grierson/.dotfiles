@@ -7,7 +7,7 @@ yay -S --needed \
   make \
   man \
 	sway \
-	swaylock \
+	swaylock-effects \
 	swayidle \
 	swaybg \
   swayimg \
