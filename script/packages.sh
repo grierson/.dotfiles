@@ -6,8 +6,8 @@ yay -S --needed \
   fish \
   ttf-firacode-nerd \
   ttf-font-awesome \
+  google-chrome \
   zoxide \
-  man \
   tmux \
   fd \
   bat \
@@ -23,8 +23,9 @@ yay -S --needed \
 	swaylock \
 	swayidle \
 	swaybg \
+  swayimg \
   bemenu \
   i3status-rs \
 	pavucontrol \
 	grim \
-
+  slurp \
