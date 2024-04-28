@@ -31,7 +31,20 @@ set $base #1e1e2e
 set $mantle #181825
 set $crust #11111b
 
-set $menu bemenu-run --fn 'Fira Code 18' --fb "#1e1e2e" --ff "#cdd6f4" --nb "#1e1e2e" --nf "#cdd6f4" --tb "#1e1e2e" --hb "#1e1e2e" --tf "#f38ba8" --hf "#f9e2af" --af "#cdd6f4" --ab "#1e1e2e" | xargs swaymsg exec --
+set $menu bemenu-run \
+--fn 'Fira Code 18' \
+--fb "#1e1e2e" \
+--ff "#cdd6f4" \
+--nb "#1e1e2e" \
+--nf "#cdd6f4" \
+--tb "#1e1e2e" \
+--hb "#1e1e2e" \
+--tf "#f38ba8" \
+--hf "#f9e2af" \
+--af "#cdd6f4" \
+--ab "#1e1e2e" \
+--list "10 down" \
+| xargs swaymsg exec --
 
 ### Output configuration
 
@@ -161,8 +174,15 @@ bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
 #
 # Read `man 5 sway-bar` for more information about this section.
 
-default_border none
-default_floating_border none
+# # title bar
+default_border pixel 2
+
+# # tokyonight theme
+client.focused              $blue #1a1b26 $blue $blue $blue
+client.focused_inactive     #292e42 #1a1b26 #6a6f87 #292e42   #292e42
+client.unfocused            #292e42 #1a1b26 #6a6f87 #292e42   #292e42
+client.urgent               #292e42 #1a1b26 #6a6f87 #292e42   #292e42
+client.placeholder          #292e42 #1a1b26 #6a6f87 #292e42   #292e42
 
 bar {
     font pango:Fira Code, FontAwesome 18
