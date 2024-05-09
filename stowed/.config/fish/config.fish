@@ -2,6 +2,10 @@ fish_add_path $HOME/.local/share/bob/nvim-bin
 fish_add_path $HOME/.cargo/bin
 fish_add_path $HOME/.local/bin
 
+set -g fish_key_bindings fish_vi_key_bindings
+fish_default_key_bindings -M insert
+fish_vi_key_bindings --no-erase insert
+
 set -gx fish_greeting ""
 
 set -Ux FZF_DEFAULT_OPTS "\
@@ -20,8 +24,6 @@ alias g="git"
 alias n="nvim"
 
 zoxide init fish | source
-
-cd ~
 
 ### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
 set --export --prepend PATH "/home/kyleg/.rd/bin"
