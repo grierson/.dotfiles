@@ -25,7 +25,7 @@ yay -S --needed \
   bat \
   fzf \
   ripgrep \
-  neovim \
+  bob \
   unzip \
   google-chrome \
   github-cli \

@@ -22,6 +22,7 @@ end
 
 alias g="git"
 alias n="nvim"
+alias k="kubectl"
 
 zoxide init fish | source
 
