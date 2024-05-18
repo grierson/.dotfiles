@@ -11,12 +11,20 @@ return {
       { "n", "v" },
       desc = "Jump 2d",
     },
+    {
+      "gp",
+      function()
+        local mini_diff = require('mini.diff')
+        mini_diff.toggle_overlay()
+      end,
+      { "n", "v" },
+      desc = "git diff"
+    },
   },
   config = function()
     require('mini.completion').setup() -- Autocomplete
     require('mini.basics').setup()     -- Better defaults
     require('mini.trailspace').setup() -- Trailing space
-    require('mini.comment').setup()    -- Comments - gcc
     require('mini.pairs').setup()      -- Auto close
     require('mini.surround').setup()   -- add/change/delete surround
     require('mini.cursorword').setup() -- Highlight current cursorword
@@ -32,6 +40,12 @@ return {
     require('mini.starter').setup()   -- Starter screen
     require('mini.sessions').setup()  -- Sessions
     require('mini.notify').setup()    -- Progress bar
+    require('mini.diff').setup({
+      view = {
+        style = 'sign',
+        priority = 199
+      }
+    }) -- Git diff
     local hipatterns = require('mini.hipatterns')
     hipatterns.setup({
       highlighters = {
