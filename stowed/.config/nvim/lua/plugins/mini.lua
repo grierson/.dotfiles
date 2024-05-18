@@ -22,7 +22,6 @@ return {
     },
   },
   config = function()
-    require('mini.completion').setup() -- Autocomplete
     require('mini.basics').setup()     -- Better defaults
     require('mini.trailspace').setup() -- Trailing space
     require('mini.pairs').setup()      -- Auto close
