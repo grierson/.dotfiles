@@ -61,11 +61,6 @@ return {
       }
     })
 
-    -- Status line
-    require('mini.statusline').setup({
-      set_vim_settings = false
-    })
-
     local miniclue = require('mini.clue')
     miniclue.setup({
       triggers = {

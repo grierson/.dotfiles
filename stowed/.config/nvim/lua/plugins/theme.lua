@@ -6,6 +6,5 @@ return {
     vim.cmd.colorscheme('alabaster')
     vim.o.termguicolors = true
     vim.o.background = "light"
-    vim.api.nvim_command("hi! CursorLine guifg=NONE guibg=" .. "#c9c9c9")
   end
 }
