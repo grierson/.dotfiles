@@ -1,10 +1,9 @@
 return {
   'stevearc/conform.nvim',
-  ft = { 'yaml', 'cs' },
+  ft = { 'yaml' },
   opts = {
     formatters_by_ft = {
-      yaml = { "yamlfix" },
-      cs = { "csharpier" }
+      yaml = { "yamlfix" }
     },
     format_on_save = {
       timeout_ms = 500,
