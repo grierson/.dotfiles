@@ -28,7 +28,6 @@ return {
           "html",
           "tsserver",
           "lua_ls",
-          "omnisharp",
         },
         handlers = {
           function(server)
