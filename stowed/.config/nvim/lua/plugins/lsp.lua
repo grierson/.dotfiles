@@ -26,7 +26,6 @@ return {
           "docker_compose_language_service",
           "clojure_lsp",
           "html",
-          "tsserver",
           "lua_ls",
         },
         handlers = {
