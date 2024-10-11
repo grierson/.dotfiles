@@ -25,6 +25,7 @@ return {
           "terraform",
           "dockerfile",
           "markdown",
+          "markdown_inline",
           "bash",
         },
         auto_install = true,

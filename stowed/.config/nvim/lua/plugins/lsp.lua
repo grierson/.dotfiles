@@ -1,16 +1,43 @@
 return {
   {
-    'stevearc/conform.nvim',
+    "stevearc/conform.nvim",
     opts = {
       formatters_by_ft = {
-        yaml = { "yamlfix" },
-        markdown = { "prettier" }
+        markdown = { "prettier" },
+        yaml = { "prettier" },
       },
-      format_on_save = {
-        timeout_ms = 500,
-        lsp_fallback = true,
+      default_format_opts = {
+        lsp_format = "fallback",
       },
-    }
+      format_on_save = { timeout_ms = 500 },
+    },
+    keys = {
+      {
+        "<leader>lf",
+        function()
+          require("conform").format({ async = true })
+        end,
+        mode = "",
+        desc = "Format",
+      },
+    },
+  },
+  {
+    "mfussenegger/nvim-lint",
+    config = function()
+      local lint = require('lint')
+
+      lint.linters_by_ft = {
+        markdown = { 'vale' },
+        yaml = { 'yamllint' },
+      }
+
+      vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
+        callback = function()
+          lint.try_lint()
+        end
+      })
+    end
   },
   {
     "williamboman/mason.nvim",
@@ -67,9 +94,8 @@ return {
       })
     end,
     keys = {
-      { "<leader>la", "<cmd>lua vim.lsp.buf.code_action()<cr>",                        desc = "Action" },
-      { "<leader>lf", "<cmd>lua require('conform').format({lsp_fallback = true})<cr>", desc = "Format" },
-      { "<leader>lr", "<cmd>lua vim.lsp.buf.rename()<cr>",                             desc = "Rename" }
+      { "<leader>la", "<cmd>lua vim.lsp.buf.code_action()<cr>", desc = "Action" },
+      { "<leader>lr", "<cmd>lua vim.lsp.buf.rename()<cr>",      desc = "Rename" }
     }
   },
   {
