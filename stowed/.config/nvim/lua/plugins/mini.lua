@@ -20,13 +20,50 @@ return {
       { "n", "v" },
       desc = "git diff"
     },
+    {
+      "<leader>M",
+      '<Cmd>lua MiniVisits.add_label("core")<CR>',
+      { "n", "v" },
+      desc = "Mark file"
+    },
+    {
+      "<leader>m",
+      '<Cmd>lua MiniExtra.pickers.visit_paths({filter = "core"})<CR>',
+      { "n", "v" },
+      desc = "List marks"
+    }
   },
   config = function()
+    -- Convenience
     require('mini.basics').setup()     -- Better defaults
     require('mini.trailspace').setup() -- Trailing space
-    require('mini.pairs').setup()      -- Auto close
-    require('mini.surround').setup()   -- add/change/delete surround
     require('mini.cursorword').setup() -- Highlight current cursorword
+
+    -- Harpoon
+    require('mini.visits').setup()
+    require('mini.pick').setup({
+      mappings = {
+        execute = {
+          char = '<C-d>',
+          func = function()
+            local path = require("mini.pick").get_picker_matches().current
+            require('mini.visits').remove_path(path)
+            return true;
+          end,
+        }
+      }
+    })
+    require('mini.extra').setup()
+
+    -- Git
+    require('mini.git').setup()
+    require('mini.diff').setup({
+      view = {
+        style = 'sign'
+      }
+    })
+
+    -- Move
     require('mini.jump2d').setup(
       {
         mappings = {
@@ -35,16 +72,13 @@ return {
       }
     )                                 -- Quick jump anywhere - <CR> <follow letters>
     require('mini.bracketed').setup() -- Bracket movement
-    require('mini.splitjoin').setup() -- gS split or join args
-    require('mini.starter').setup()   -- Starter screen
-    require('mini.sessions').setup()  -- Sessions
-    require('mini.notify').setup()    -- Progress bar
-    require('mini.diff').setup({
-      view = {
-        style = 'sign',
-        priority = 199
-      }
-    }) -- Git diff
+
+    -- Style
+    require('mini.statusline').setup() -- Starter screen
+    require('mini.icons').setup()      -- Starter screen
+    require('mini.starter').setup()    -- Starter screen
+    require('mini.sessions').setup()   -- Sessions
+    require('mini.notify').setup()     -- Progress bar
     local hipatterns = require('mini.hipatterns')
     hipatterns.setup({
       highlighters = {
@@ -53,14 +87,18 @@ return {
       },
     })
 
-    -- Move code
+    -- Edit Code
     require('mini.move').setup({
       mappings = {
         up = '<S-up>',
         down = '<S-down>'
       }
     })
+    require('mini.surround').setup()  -- add/change/delete surround
+    require('mini.splitjoin').setup() -- gS split or join args
+    require('mini.pairs').setup()     -- Auto close
 
+    -- Keymap helper
     local miniclue = require('mini.clue')
     miniclue.setup({
       triggers = {
@@ -106,8 +144,6 @@ return {
         { mode = 'n', keys = '<Leader>w', desc = '+Workspace' },
         { mode = 'n', keys = '<Leader>s', desc = '+Search' },
         { mode = 'n', keys = '<Leader>l', desc = '+LSP' },
-        { mode = 'n', keys = '<Leader>h', desc = '+Hunk' },
-        -- Enhance this by adding descriptions for <Leader> mapping groups
         miniclue.gen_clues.builtin_completion(),
         miniclue.gen_clues.g(),
         miniclue.gen_clues.marks(),
