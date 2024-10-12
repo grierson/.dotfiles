@@ -20,6 +20,61 @@ return {
         mode = "",
         desc = "Format",
       },
+      -- Center Movement
+      {
+        "J",
+        "mzJ`z",
+        mode = "n",
+        desc = "Center merge"
+      },
+      {
+        "<C-d>",
+        "<C-d>zz",
+        mode = "n",
+        desc = "Scroll Down"
+      },
+      {
+        "<C-u>",
+        "<C-u>zz",
+        mode = "n",
+        desc = "Scroll Up"
+      },
+      {
+        "J",
+        "mzJ`z",
+        mode = "n",
+        desc = "Join center"
+      },
+      {
+        "n",
+        "nzzzv",
+        mode = "n",
+        desc = "Next center"
+      },
+      {
+        "N",
+        "Nzzzv",
+        mode = "n",
+        desc = "Previous center"
+      },
+      {
+        "<leader>p",
+        [["_dP]],
+        mode = "x",
+        desc = "Paste"
+      },
+      {
+        "<leader>y",
+        [["+y]],
+        mode = { "n", "v" },
+        desc = "Clipboard"
+      },
+      {
+        "<leader>S",
+        [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
+        mode = "n",
+        desc = "Substitute word"
+      },
     },
   },
   {
@@ -119,6 +174,7 @@ return {
       lspkind.init({})
 
       local cmp = require("cmp")
+      local ls = require("luasnip")
 
       cmp.setup({
         sources = cmp.config.sources({
@@ -129,7 +185,7 @@ return {
         }),
         snippet = {
           expand = function(args)
-            require("luasnip").lsp_expand(args.body)
+            ls.lsp_expand(args.body)
           end,
         },
         mapping = cmp.mapping.preset.insert({
@@ -139,6 +195,18 @@ return {
           format = lspkind.cmp_format({})
         }
       })
+
+      vim.keymap.set({ "i", "s" }, "<S-Down>", function()
+        if ls.expand_or_jumpable() then
+          ls.expand_or_jump()
+        end
+      end, { silent = true })
+
+      vim.keymap.set({ "i", "s" }, "<S-Up>", function()
+        if ls.jumpable(-1) then
+          ls.jump(-1)
+        end
+      end, { silent = true })
     end
   }
 }
