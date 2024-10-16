@@ -8,6 +8,10 @@ return {
     ft = { "clojure", "fennel", "scheme" },
     config = function()
       require("nvim-paredit").setup()
+      vim.cmd([[
+        let g:conjure#filetype#scheme = "conjure.client.guile.socket"
+        let g:conjure#client#guile#socket#pipename = "guile-repl.socket"
+      ]])
     end,
     keys = {
       { "<localleader>i",
