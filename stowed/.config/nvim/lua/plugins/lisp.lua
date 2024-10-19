@@ -5,7 +5,7 @@ return {
   },
   {
     "julienvincent/nvim-paredit",
-    ft = { "clojure", "fennel", "scheme" },
+    ft = { "clojure", "fennel", "scheme", "racket" },
     config = function()
       require("nvim-paredit").setup()
       vim.cmd([[

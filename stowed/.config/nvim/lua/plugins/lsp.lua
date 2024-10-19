@@ -113,6 +113,7 @@ return {
     lazy = false,
     config = function()
       local lspconfig = require('lspconfig')
+      lspconfig.racket_langserver.setup({})
       require("mason-lspconfig").setup({
         ensure_installed = {
           "terraformls",
