@@ -38,6 +38,7 @@ return {
       { "<leader>sh", "<cmd>FzfLua help_tags<cr>",             desc = "Help" },
       { "<leader>sc", "<cmd>FzfLua commands<cr>",              desc = "Commands" },
       { "<leader>st", "<cmd>FzfLua grep search='TODO'<cr>",    desc = "TODO" },
+      { "<leader>ss", "<cmd>FzfLua lsp_document_symbols<cr>",  desc = "Symbols" },
       { "<leader>b",  "<cmd>FzfLua buffers<cr>",               desc = "Buffer" },
     },
   },
